@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages Site</title>
+</head>
+<body>
+
+<div class="wonders-container">
+  <h1>Seven Wonders of the World</h1>
+  <div class="wonders-grid">
+    <div class="wonder-card" data-name="Great Wall of China" data-description="Built between the 5th century B.C. and the 16th century, the Great Wall of China is a stone-and-earth fortification created to protect the borders of the Chinese Empire from invading Mongols.">
+      <img src="https://source.unsplash.com/random/300x200/?great+wall+of+china" alt="Great Wall of China">
+      <h3>Great Wall of China</h3>
+    </div>
+    <div class="wonder-card" data-name="Petra" data-description="Established possibly as early as 312 BC as the capital city of the Nabataeans, Petra is famous for its rock-cut architecture and water conduit system.">
+      <img src="https://source.unsplash.com/random/300x200/?petra" alt="Petra">
+      <h3>Petra</h3>
+    </div>
+    <div class="wonder-card" data-name="Christ the Redeemer" data-description="Christ the Redeemer is an Art Deco statue of Jesus Christ in Rio de Janeiro, Brazil, created by French sculptor Paul Landowski and built by engineer Heitor da Silva Costa.">
+      <img src="https://source.unsplash.com/random/300x200/?christ+the+redeemer" alt="Christ the Redeemer">
+      <h3>Christ the Redeemer</h3>
+    </div>
+    <div class="wonder-card" data-name="Machu Picchu" data-description="Machu Picchu is a 15th-century Inca citadel situated on a mountain ridge 2,430 meters above sea level in Peru. It was built as an estate for the Inca emperor Pachacuti.">
+      <img src="https://source.unsplash.com/random/300x200/?machu+picchu" alt="Machu Picchu">
+      <h3>Machu Picchu</h3>
+    </div>
+    <div class="wonder-card" data-name="Chichen Itza" data-description="Chichen Itza was a large pre-Columbian city built by the Maya people. The archaeological site is located in Mexico's Yucatán Peninsula.">
+      <img src="https://source.unsplash.com/random/300x200/?chichen+itza" alt="Chichen Itza">
+      <h3>Chichen Itza</h3>
+    </div>
+    <div class="wonder-card" data-name="Colosseum" data-description="The Colosseum is an oval amphitheatre in the centre of the city of Rome, Italy. Built of travertine, tuff, and brick-faced concrete, it is the largest amphitheatre ever built.">
+      <img src="https://source.unsplash.com/random/300x200/?colosseum" alt="Colosseum">
+      <h3>Colosseum</h3>
+    </div>
+    <div class="wonder-card" data-name="Taj Mahal" data-description="The Taj Mahal is an ivory-white marble mausoleum on the south bank of the Yamuna river in the Indian city of Agra. It was commissioned in 1632 by the Mughal emperor, Shah Jahan.">
+      <img src="https://source.unsplash.com/random/300x200/?taj+mahal" alt="Taj Mahal">
+      <h3>Taj Mahal</h3>
+    </div>
+  </div>
+  <div class="modal" id="wonderModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .wonders-container {
+    max-width: 100%;
+    padding: 16px;
+    color: #FFFFFF;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 2rem;
+    color: #00B07B;
+  }
+  
+  .wonders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  
+  .wonder-card {
+    border-radius: 8px;
+    border: 1px solid rgba(0, 176, 123, 0.48);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .wonder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 176, 123, 0.2);
+  }
+  
+  .wonder-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .wonder-card h3 {
+    padding: 8px;
+    margin: 0;
+    text-align: center;
+    font-weight: 500;
+    color: #00B07B;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+  }
+  
+  .modal-content {
+    background-color: rgba(25, 25, 25, 0.95);
+    margin: 15% auto;
+    padding: 16px;
+    border: 1px solid rgba(0, 176, 123, 0.48);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .close {
+    color: #00B07B;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: #FFFFFF;
+  }
+  
+  #modalTitle {
+    color: #00B07B;
+    margin-top: 8px;
+  }
+  
+  #modalDescription {
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 600px) {
+    .wonders-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+      width: 90%;
+      margin: 30% auto;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('wonderModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const closeBtn = document.querySelector('.close');
+    const wonderCards = document.querySelectorAll('.wonder-card');
+    
+    wonderCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const name = card.getAttribute('data-name');
+        const description = card.getAttribute('data-description');
+        
+        modalTitle.textContent = name;
+        modalDescription.textContent = description;
+        modal.style.display = 'block';
+      });
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
